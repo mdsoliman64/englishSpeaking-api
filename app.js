@@ -11,7 +11,18 @@ const mail = process.env.MAIL;
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+
+
+
+/////////////// Control API////////////////
+const corsOptions = {
+    origin:"https://learnenglish-dgff.onrender.com/",
+    methods: 'GET,HEAD,PUT,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204, 
+}
+app.use(cors(corsOptions));
+
 
 
 
@@ -65,6 +76,7 @@ bcrypt.genSalt(saltRounds, function(err, salt) {
 ///////////////////////////////////////////////////
 const postSchema = mongoose.Schema({
     title:String,
+    ///////// changing ////////////////////
     clue:{
         first:String,
         second:String,
@@ -84,6 +96,8 @@ app.get('/api_id='+api_ID,(req,res)=>{
 
 Post.find({}).then((found)=>{
     res.send(found);
+}).catch((err)=>{
+    console.log(err.message);
 })
 
 })
