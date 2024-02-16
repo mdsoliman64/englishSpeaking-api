@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 
 /////////////// Control API////////////////
-var whiteList = ["https://learnenglish-dgff.onrender.com/","https://mdsoliman64.github.io/learnenglish"]
+var whiteList = ["https://learnenglish-dgff.onrender.com/","https://mdsoliman64.github.io/learnenglish","https://learnenglish-dgff.onrender.com"]
 /*const corsOptions = {
     origin:"https://learnenglish-dgff.onrender.com/",
     methods: 'GET,HEAD,PUT,DELETE',
