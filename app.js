@@ -15,16 +15,19 @@ const PORT = process.env.PORT || 5000;
 
 
 /////////////// Control API////////////////
-var whiteList = ["https://learnenglish-dgff.onrender.com/","https://mdsoliman64.github.io/learnenglish","https://learnenglish-dgff.onrender.com"]
-const corsOptions = {
-    origin:"https://learnenglish-dgff.onrender.com/",
-    methods: 'GET,HEAD,PUT,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 204, 
+// var whiteList = ["https://learnenglish-dgff.onrender.com/","https://mdsoliman64.github.io/learnenglish","https://learnenglish-dgff.onrender.com"]
+// const corsOptions = {
+//     origin:"https://learnenglish-dgff.onrender.com/",
+//     methods: 'GET,HEAD,PUT,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 204, 
+// }
+
+
+var corsOptions = {
+  origin: 'https://learnenglish-dgff.onrender.com/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-
-
-
 
 // var corsOptions = {
 //   origin: function (origin, callback) {
