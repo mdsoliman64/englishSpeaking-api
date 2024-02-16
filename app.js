@@ -15,17 +15,26 @@ const PORT = process.env.PORT || 5000;
 
 
 /////////////// Control API////////////////
-const corsOptions = {
+var whiteList = ["https://learnenglish-dgff.onrender.com/","https://mdsoliman64.github.io/learnenglish"]
+/*const corsOptions = {
     origin:"https://learnenglish-dgff.onrender.com/",
     methods: 'GET,HEAD,PUT,DELETE',
     credentials: true,
     optionsSuccessStatus: 204, 
 }
 app.use(cors(corsOptions));
+*/
 
 
-
-
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 ////////////////////////////////
 app.set('view engine', 'ejs');
@@ -92,7 +101,7 @@ const Post = mongoose.model("post",postSchema);
 
 
 ////////////////////////////////
-app.get('/api_id='+api_ID,(req,res)=>{
+app.get('/api_id='+api_ID,cors(corsOptions),(req,res)=>{
 
 Post.find({}).then((found)=>{
     res.send(found);
