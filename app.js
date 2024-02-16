@@ -24,10 +24,9 @@ const PORT = process.env.PORT || 5000;
 // }
 
 
-var corsOptions = {
-  origin: 'https://learnenglish-dgff.onrender.com/',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+app.use(cors({
+  origin:"https://learnenglish-dgff.onrender.com"
+}))
 
 // var corsOptions = {
 //   origin: function (origin, callback) {
@@ -38,27 +37,7 @@ var corsOptions = {
 //     }
 //   }
 // }
-app.use(function (req, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://learnenglish-dgff.onrender.com/"
-  );
 
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-  );
-
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Private-Network", true);
-   res.setHeader("Access-Control-Max-Age", 7200);
-
-  next();
-})
 ////////////////////////////////
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -124,7 +103,7 @@ const Post = mongoose.model("post",postSchema);
 
 
 ////////////////////////////////
-app.get('/api_id='+api_ID,cors(corsOptions),(req,res)=>{
+app.get('/api_id='+api_ID,(req,res)=>{
 
 Post.find({}).then((found)=>{
     res.send(found);
